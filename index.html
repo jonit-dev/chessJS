@@ -13,9 +13,14 @@
     <!--Module-->
     <script src="angular/modules/app.js"></script>
 
+    <!--FONTS-->
+    <link rel="stylesheet" href="fonts/emulogic/stylesheet.css">
+
+    <!--STYLES-->
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/clearfix.css">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/turn.css">
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="css/pieces.css">
 
@@ -24,6 +29,13 @@
 <body ng-cloak="" ng-controller="dragDropCtrl">
 
 <div class="board" ng-controller="boardCtrl">
+
+    <!--TURN SHOW-->
+    <div class="turn-wrapper">
+        <p>Turn: {{turn}}</p>
+
+    </div>
+
 
     <div ng-controller="pieceCtrl">
 
@@ -74,6 +86,7 @@
 
 <!--Services-->
 <script src="angular/services/pieceMovementService.js"></script>
+<script src="angular/services/bkgMusicService.js"></script>
 
 
 

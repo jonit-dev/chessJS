@@ -93,6 +93,9 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
                 this.turnOffAttackHighlights();
             }
 
+            let audio = new Audio(`sfx/attack/${this.name.toLowerCase()}-attack.wav`);
+            audio.play();
+
 
         }
 
@@ -734,17 +737,8 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     TEAM POSITIONING
     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-//king debug
-
-
-
-
-
-
-    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    WHITE TEAM
-    <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+  
+/* WHITE TEAM =========================================== */
 
     new Rook(0, 7, 'white');
     new Rook(7, 7, 'white');
@@ -764,9 +758,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
     new King(4,7,'white');
 
-    // // /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    // // BLACK TEAM
-    // // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+/* BLACK TEAM =========================================== */
 
     new Rook(0, 0, 'black');
     new Rook(7, 0, 'black');

@@ -1,4 +1,10 @@
-app.controller('boardCtrl', ($scope, $rootScope) => {
+app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
+
+    /* ------------------------------------------------------------|
+    | BACKGROUND MUSIC
+    *-------------------------------------------------------------*/
+    bkgMusicService.init();
+    bkgMusicService.playSound();
 
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     BOARD STRUCTURE
@@ -13,6 +19,13 @@ app.controller('boardCtrl', ($scope, $rootScope) => {
             this.max_rows = max_rows;
             this.rows = [];
 
+            $rootScope.turn = 0; //white turn
+
+            /* RANDOM TURN BEGIN =========================================== */
+            let n = Math.floor(Math.random() * 10 );
+            (n > 5 ? $rootScope.turn = 'Player White' : $rootScope.turn = 'Player Dark');
+
+            console.log($scope.turn);
 
             //create columns
             let sqColor = 'dark-square';
@@ -44,7 +57,6 @@ app.controller('boardCtrl', ($scope, $rootScope) => {
             }
 
         }
-
 
         returnSquare(x, y) {
 
@@ -182,14 +194,17 @@ app.controller('boardCtrl', ($scope, $rootScope) => {
 
 
                 case false: // turn off highlight
-                    for (let square of squares) {
-                        // console.log(square);
-                        if (square.x >= 0 && square.y >= 0) {
-                            // console.log(`Unhighli square ${square.x}/${square.y}`);
-                            this.changeSquareAttr(square.x, square.y, 'droppable', false); //test
-                            this.changeSquareAttr(square.x, square.y, 'enemyPiece', false); //test
+                    if(typeof squares !== 'undefined') {
+                        for (let square of squares) {
+                            // console.log(square);
+                            if (square.x >= 0 && square.y >= 0) {
+                                // console.log(`Unhighli square ${square.x}/${square.y}`);
+                                this.changeSquareAttr(square.x, square.y, 'droppable', false); //test
+                                this.changeSquareAttr(square.x, square.y, 'enemyPiece', false); //test
 
+                            }
                         }
+
                     }
 
 
@@ -197,6 +212,26 @@ app.controller('boardCtrl', ($scope, $rootScope) => {
 
 
             }
+
+
+        }
+
+
+        checkObjTurn(obj) {
+
+
+            switch($rootScope.turn) {
+
+                case 'Player White':
+                    return obj.team === 'white';
+                    break;
+
+                case 'Player Dark':
+                    return obj.team === 'black';
+                    break;
+
+            }
+
 
 
         }

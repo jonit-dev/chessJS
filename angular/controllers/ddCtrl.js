@@ -10,36 +10,48 @@ app.controller('dragDropCtrl', ($scope, $rootScope) => {
         //get dragged object dat
         $scope.draggedObj = obj;
 
-        /* KING =========================================== */
-        //if its a king, calculate check mate positions
-        if($scope.draggedObj.name === 'King') {
-            $scope.draggedObj.calculateCheckMate();
-        }
+
+     if($rootScope.board.checkObjTurn($scope.draggedObj)) { //if its my turn
+         /* KING =========================================== */
+         //if its a king, calculate check mate positions
+         if($scope.draggedObj.name === 'King') {
+             $scope.draggedObj.calculateCheckMate();
+         }
 
 
-       //start calculating moves
+         //start calculating moves
 
-        if(typeof $scope.draggedObj.firstMove !== 'undefined') {   //if the piece has this propriety... (Pawn)
-            if(!$scope.draggedObj.firstMove) { //if it didnt execute its first move
-                $scope.draggedObj.calculateFirstMoves(); //calculate it to execution
+         if(typeof $scope.draggedObj.firstMove !== 'undefined') {   //if the piece has this propriety... (Pawn)
+             if(!$scope.draggedObj.firstMove) { //if it didnt execute its first move
+                 $scope.draggedObj.calculateFirstMoves(); //calculate it to execution
 
-            } else {
-                //if already executed its moves. just move normally
+             } else {
+                 //if already executed its moves. just move normally
 
-                $scope.draggedObj.calculateMoves(this.x, this.y);
+                 $scope.draggedObj.calculateMoves(this.x, this.y);
 
-            }
-        } else {
-
-
+             }
+         } else {
 
 
-            $scope.draggedObj.calculateMoves(this.x,this.y); //normal piece, just calculate moves
-
-        }
 
 
-        $rootScope.board.highlight(obj, true);
+             $scope.draggedObj.calculateMoves(this.x,this.y); //normal piece, just calculate moves
+
+         }
+
+
+         $rootScope.board.highlight(obj, true);
+     } else {
+         alert("Its not your turn!")
+         let audio = new Audio('sfx/cancel.wav');
+         audio.play();
+     }
+
+
+
+
+
     };
 
 
@@ -78,6 +90,17 @@ app.controller('dragDropCtrl', ($scope, $rootScope) => {
         }
 
         $scope.draggedObj.changePosition(dropObj.x, dropObj.y) //change piece data position on board
+
+        //change turn
+
+        if($rootScope.turn === 'Player White') {
+            $rootScope.turn = 'Player Dark'
+        } else {
+            $rootScope.turn = 'Player White';
+        }
+
+
+
 
     };
 

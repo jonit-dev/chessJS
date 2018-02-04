@@ -96,7 +96,7 @@ app.controller('boardCtrl', ($scope, $rootScope) => {
 
         highlight(obj, highlight) {
 
-            let squares = obj.allowedSquares; //default
+            let squares = obj.allowedSquares; //previously calculated moves (see ddCtrl.js)
 
             if (obj.firstMove == false) {
                 // console.log(obj.firstMoveSquares);

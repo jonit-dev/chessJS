@@ -10,16 +10,18 @@ app.controller('dragDropCtrl', ($scope, $rootScope) => {
         //get dragged object dat
         $scope.draggedObj = obj;
 
+        /* KING =========================================== */
+        //if its a king, calculate check mate positions
+        if($scope.draggedObj.name === 'King') {
+            $scope.draggedObj.calculateCheckMate();
+        }
 
-        //inicia calculo de movimentos
 
-
-
+       //start calculating moves
 
         if(typeof $scope.draggedObj.firstMove !== 'undefined') {   //if the piece has this propriety... (Pawn)
             if(!$scope.draggedObj.firstMove) { //if it didnt execute its first move
                 $scope.draggedObj.calculateFirstMoves(); //calculate it to execution
-
 
             } else {
                 //if already executed its moves. just move normally
@@ -28,6 +30,10 @@ app.controller('dragDropCtrl', ($scope, $rootScope) => {
 
             }
         } else {
+
+
+
+
             $scope.draggedObj.calculateMoves(this.x,this.y); //normal piece, just calculate moves
 
         }

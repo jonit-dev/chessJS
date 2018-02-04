@@ -147,15 +147,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             //by default, prevent obj to move to same spot as team members, and allow to move into enemies (unless enemiesAsblocks = true)
 
-
             let positionPiece = this.returnPiece(x, y);
-
-            if (this.name === 'King') {
-                let checkMovements = this.calculateCheckMate();
-                if (this.checkPositionCheckMate(x, y, checkMovements) === true) {
-                    return false; // avoid the king to move into check mate positions
-                }
-            }
 
 
             if (positionPiece) { //if theres someone
@@ -459,6 +451,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             //vertical up moves
 
+
             for (let movement of pieceMovementService.generateMovement(this, ['vertical-up', 'vertical-down', 'horizontal-left', 'horizontal-right'])) {
                 moves.push(movement);
             }
@@ -470,7 +463,8 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             // console.log(moves);
 
-            this.allowedSquares = moves;
+
+            return this.allowedSquares = moves;
         }
 
 
@@ -509,7 +503,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             // console.log(moves);
 
-            this.allowedSquares = moves;
+            return this.allowedSquares = moves;
         }
 
 
@@ -550,7 +544,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             // console.log(moves);
 
-            this.allowedSquares = moves;
+           return this.allowedSquares = moves;
         }
 
 
@@ -646,7 +640,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
             this.allowedSquares = [];
             this.id = $scope.numberPieces;
             this.imgUrl = 'gfx/chess-king-';
-
+            this.avoidSqs = [];
         }
 
         calculateMoves(x, y) {
@@ -672,94 +666,66 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             // console.log(moves);
 
-            this.allowedSquares = moves;
+           return this.allowedSquares = moves;
         }
 
         calculateCheckMate() {
 
 
-            let allMovements = [];
+            /* ------------------------------------------------------------|
+            | Loop through all pieces, calculate each movement of them,
+            | and avoid going into that squares
+            *-------------------------------------------------------------*/
+
+            let avoidSquares = [];
+
 
             for (let piece of $scope.activePieces) {
 
-                if (piece.team !== this.team) {//dont calculate team members movements.
+                if (piece.team !== this.team && piece.id !== this.id) { //only avoid enemy possible movement squares
 
-                    //for the pawn
+
+                    /* PAWN CASE =========================================== */
                     if (piece.name === 'Pawn') {
-                        if (piece.firstMove === true) {
-                            piece.calculateMoves(piece.x, piece.y);
 
-                            for (let move of piece.allowedSquares) {
+                        let atqSqs = piece.calculatePossibleAttackSquares();
+                        for (let atqSq of atqSqs) {
+                            avoidSquares.push(atqSq);
+                        }
+                    } else { /* END PAWN =========================================== */
 
-                                allMovements.push(move);
 
+                        /* OTHER PIECES =========================================== */
+                        // console.log(piece.name);
+                        //force a movement calculation
+                        let sqs = piece.calculateMoves(piece.x, piece.y);
+                        for (let sq of sqs) {
+                            if(typeof sq !== 'undefined') {
+                                avoidSquares.push(sq);
                             }
-
-                            // let attackSq = piece.calculatePossibleAttackSquares();
-                            // console.log('attack squares:');
-                            // console.log(attackSq);
-                            // for (let move of attackSq) {
-                            //     allMovements.push(move);
-                            // }
-
-
-                        } else {
-                            piece.calculateFirstMoves(piece.x, piece.y);
-                            for (let move of piece.firstMoveSquares) {
-
-                                allMovements.push(move);
-
-                            }
-
-
-                            // let attackSq = piece.calculatePossibleAttackSquares();
-                            // console.log('attack squares:');
-                            // console.log(attackSq);
-                            // for (let move of attackSq) {
-                            //     allMovements.push(move);
-                            // }
-
                         }
                     }
-
-                    //for others
-                    piece.calculateMoves(piece.x, piece.y);
-                    for (let move of piece.allowedSquares) {
-                        if (move) {
-                            allMovements.push(move);
-                        }
-                    }
-
-
                 }
-
-
             }
-
-
-            //             for(let checkMovement of allMovements) {
-//         $rootScope.board.changeSquareAttr(checkMovement.x,checkMovement.y,'droppable',true);
-//
-//                     // console.log(checkMovement)
-// // console.log($rootScope.board.returnSquare(checkMovement.x,checkMovement.y));
-//             }
-//
-//             return allMovements;
-
-            return this.containMovesInBoard(allMovements); //filter wrong movements and return the correct ones
-
-
+            this.avoidSqs = this.containMovesInBoard(avoidSquares);  //filter wrong movements and return the correct ones
         }
 
 
-        checkPositionCheckMate(x, y, checkMateMovements) {
-            for (let checkMovement of checkMateMovements) {
-                if (checkMovement.x === x && checkMovement.y === y) {
-                    return true;
-                }
+        checkPositionCheckMate(x, y) {
+            let checkMateMovements = this.avoidSqs;
+
+            if(checkMateMovements !== 'undefined') {
+                let output = checkMateMovements.find((forbiddenSq) => {
+                    if (forbiddenSq.x === x && forbiddenSq.y === y) {
+                        return forbiddenSq;
+                    }
+                });
+
+                return typeof output !== 'undefined';
             }
 
-            return false;
+
+
 
         }
     }
@@ -768,6 +734,9 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     TEAM POSITIONING
     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+//king debug
+
 
 
 
@@ -816,10 +785,6 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
     new Queen(3,0,'black');
     new King(4,0,'black');
-
-
-
-    console.log($scope.activePieces);
 
 
 });

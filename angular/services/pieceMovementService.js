@@ -13,7 +13,6 @@ app.service('pieceMovementService', function ($rootScope) {
                 for (let direction of directions) { //loop through all directions and start calculating movements
 
 
-
                     if (direction === 'vertical-up') {
                         for (let y = obj.y - 1; y >= 0; y--) {
                             // console.log(`Checking position X:${obj.x} / Y:${y}`);
@@ -119,8 +118,6 @@ app.service('pieceMovementService', function ($rootScope) {
                             }
                         }
                     }
-
-
 
 
                 }
@@ -136,7 +133,6 @@ app.service('pieceMovementService', function ($rootScope) {
                 for (let direction of directions) { //loop through all directions and start calculating movements
 
 
-
                     if (direction === 'diagonal-left-up') {
                         let loopNumber = 1;
                         for (let y = obj.y - 1; y >= 0; y--) {
@@ -259,16 +255,6 @@ app.service('pieceMovementService', function ($rootScope) {
                     }
 
 
-
-
-
-
-
-
-
-
-
-
                 }
 
 
@@ -280,7 +266,6 @@ app.service('pieceMovementService', function ($rootScope) {
 
 
                 for (let direction of directions) { //loop through all directions and start calculating movements
-
 
 
                     if (direction === 'vertical-up') {
@@ -512,10 +497,6 @@ app.service('pieceMovementService', function ($rootScope) {
                     }
 
 
-
-
-
-
                 }
 
 
@@ -525,196 +506,77 @@ app.service('pieceMovementService', function ($rootScope) {
 
                 output = [];
 
-
                 for (let direction of directions) { //loop through all directions and start calculating movements
 
 
+                    switch (direction) {
 
-                    if (direction === 'up') {
+                        case 'up':
+                            nextSqX = obj.x;
+                            nextSqY = obj.y - 1;
+                            break;
 
-                            //check if square is available
+                        case 'diagonal-up-right':
+                            nextSqX = obj.x + 1;
+                            nextSqY = obj.y - 1;
+                            break;
 
-                            if (obj.checkPositionAvailable(obj.x, obj.y-1)) {//empty or enemy is present
+                        case 'diagonal-up-left':
+                            nextSqX = obj.x - 1;
+                            nextSqY = obj.y - 1;
+                            break;
 
-                                //add allowed square to highlighting
-                                output.push({
-                                    x: obj.x,
-                                    y: obj.y-1
-                                });
+                        case 'down':
+                            nextSqX = obj.x;
+                            nextSqY = obj.y + 1;
+                            break;
 
-                                let whoIsThere = obj.returnPiece(obj.x, obj.y-1);
-                                if (whoIsThere) { //lets see if its an enemy
+                        case 'diagonal-down-left':
+                            nextSqX = obj.x - 1;
+                            nextSqY = obj.y + 1;
+                            break;
 
-                                    if (whoIsThere.team !== obj.team) { //its an enemy!
-                                        //if its an enemy, just highlight and stop calculating moves.
+                        case 'diagonal-down-right':
+                            nextSqX = obj.x + 1;
+                            nextSqY = obj.y + 1;
+                            break;
 
-                                    }
-                                }
-                            }
+                        case 'left':
+                            nextSqX = obj.x - 1;
+                            nextSqY = obj.y;
+                            break;
+
+                        case 'right':
+                            nextSqX = obj.x + 1;
+                            nextSqY = obj.y;
+                            break;
+
 
                     }
 
-                    if (direction === 'diagonal-up-right') {
+                    if (obj.checkPositionAvailable(nextSqX, nextSqY) && !obj.checkPositionCheckMate(nextSqX,nextSqY) ) {//empty or enemy is present
 
-                        //check if square is available
 
-                        if (obj.checkPositionAvailable(obj.x+1, obj.y-1)) {//empty or enemy is present
+                        // console.log(`Position X:${nextSqX} / y: ${nextSqY} is a checkmate? ${obj.checkPositionCheckMate(nextSqX,nextSqY)}`);
+
+
 
                             //add allowed square to highlighting
                             output.push({
-                                x: obj.x+1,
-                                y: obj.y-1
+                                x: nextSqX,
+                                y: nextSqY
                             });
-
-                            let whoIsThere = obj.returnPiece(obj.x+1, obj.y-1);
+                            let whoIsThere = obj.returnPiece(nextSqX, nextSqY);
                             if (whoIsThere) { //lets see if its an enemy
-
                                 if (whoIsThere.team !== obj.team) { //its an enemy!
                                     //if its an enemy, just highlight and stop calculating moves.
 
                                 }
                             }
-                        }
+
 
                     }
 
-                    if (direction === 'diagonal-up-left') {
-
-                        //check if square is available
-                        if (obj.checkPositionAvailable(obj.x-1, obj.y-1)) {//empty or enemy is present
-
-                            //add allowed square to highlighting
-                            output.push({
-                                x: obj.x-1,
-                                y: obj.y-1
-                            });
-
-                            let whoIsThere = obj.returnPiece(obj.x-1, obj.y-1);
-                            if (whoIsThere) { //lets see if its an enemy
-
-                                if (whoIsThere.team !== obj.team) { //its an enemy!
-                                    //if its an enemy, just highlight and stop calculating moves.
-
-                                }
-                            }
-                        }
-
-                    }
-
-                    if (direction === 'diagonal-down-left') {
-
-                        //check if square is available
-                        if (obj.checkPositionAvailable(obj.x-1, obj.y+1)) {//empty or enemy is present
-
-                            //add allowed square to highlighting
-                            output.push({
-                                x: obj.x-1,
-                                y: obj.y+1
-                            });
-
-                            let whoIsThere = obj.returnPiece(obj.x-1, obj.y+1);
-                            if (whoIsThere) { //lets see if its an enemy
-
-                                if (whoIsThere.team !== obj.team) { //its an enemy!
-                                    //if its an enemy, just highlight and stop calculating moves.
-
-                                }
-                            }
-                        }
-
-                    }
-
-                    if (direction === 'diagonal-down-right') {
-
-                        //check if square is available
-                        if (obj.checkPositionAvailable(obj.x+1, obj.y+1)) {//empty or enemy is present
-
-                            //add allowed square to highlighting
-                            output.push({
-                                x: obj.x+1,
-                                y: obj.y+1
-                            });
-
-                            let whoIsThere = obj.returnPiece(obj.x+1, obj.y+1);
-                            if (whoIsThere) { //lets see if its an enemy
-
-                                if (whoIsThere.team !== obj.team) { //its an enemy!
-                                    //if its an enemy, just highlight and stop calculating moves.
-
-                                }
-                            }
-                        }
-
-                    }
-
-                    if (direction === 'down') {
-
-                        //check if square is available
-                        if (obj.checkPositionAvailable(obj.x, obj.y+1)) {//empty or enemy is present
-
-                            //add allowed square to highlighting
-                            output.push({
-                                x: obj.x,
-                                y: obj.y+1
-                            });
-
-                            let whoIsThere = obj.returnPiece(obj.x, obj.y+1);
-                            if (whoIsThere) { //lets see if its an enemy
-
-                                if (whoIsThere.team !== obj.team) { //its an enemy!
-                                    //if its an enemy, just highlight and stop calculating moves.
-
-                                }
-                            }
-                        }
-
-                    }
-
-                    if (direction === 'left') {
-
-                        //check if square is available
-                        if (obj.checkPositionAvailable(obj.x-1, obj.y)) {//empty or enemy is present
-
-                            //add allowed square to highlighting
-                            output.push({
-                                x: obj.x-1,
-                                y: obj.y
-                            });
-
-                            let whoIsThere = obj.returnPiece(obj.x-1, obj.y);
-                            if (whoIsThere) { //lets see if its an enemy
-
-                                if (whoIsThere.team !== obj.team) { //its an enemy!
-                                    //if its an enemy, just highlight and stop calculating moves.
-
-                                }
-                            }
-                        }
-
-                    }
-
-                    if (direction === 'right') {
-
-                        //check if square is available
-                        if (obj.checkPositionAvailable(obj.x+1, obj.y)) {//empty or enemy is present
-
-                            //add allowed square to highlighting
-                            output.push({
-                                x: obj.x+1,
-                                y: obj.y
-                            });
-
-                            let whoIsThere = obj.returnPiece(obj.x+1, obj.y);
-                            if (whoIsThere) { //lets see if its an enemy
-
-                                if (whoIsThere.team !== obj.team) { //its an enemy!
-                                    //if its an enemy, just highlight and stop calculating moves.
-
-                                }
-                            }
-                        }
-
-                    }
 
                 }
 

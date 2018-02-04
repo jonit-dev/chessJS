@@ -1,10 +1,15 @@
-app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
+app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
+
+
+
+
+
 
     /* ------------------------------------------------------------|
     | BACKGROUND MUSIC
     *-------------------------------------------------------------*/
-    bkgMusicService.init();
-    bkgMusicService.playSound();
+    // bkgMusicService.init();
+    // bkgMusicService.playSound();
 
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     BOARD STRUCTURE
@@ -19,10 +24,11 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
             this.max_rows = max_rows;
             this.rows = [];
 
+
             $rootScope.turn = 0; //white turn
 
             /* RANDOM TURN BEGIN =========================================== */
-            let n = Math.floor(Math.random() * 10 );
+            let n = Math.floor(Math.random() * 10);
             (n > 5 ? $rootScope.turn = 'Player White' : $rootScope.turn = 'Player Dark');
 
             console.log($scope.turn);
@@ -45,7 +51,8 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
                         className: sqColor,
                         piece: {},
                         droppable: false, //to put pieces there
-                        enemyPiece: false //to mark if theres an enemy in this position
+                        enemyPiece: false, //to mark if theres an enemy in this position
+                        blood:false
                     })
 
                 }
@@ -88,6 +95,24 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
         }
 
 
+        showMessage(msg) {
+            /* ------------------------------------------------------------|
+            | DIALOG SETUP
+            *-------------------------------------------------------------*/
+
+            $rootScope.theme = 'ngdialog-theme-default';
+
+                ngDialog.open({
+                    template: '<h2 style="text-align:center;" class="zindex">'+msg+'</h2>',
+                    className: 'ngdialog-theme-default',
+                    plain: true,
+                    overlay: false,
+                    windowClass: 'zindex'
+                });
+
+        }
+
+
         changeSquareAttr(x, y, attr, value) {
 
 
@@ -123,11 +148,11 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
                     ATTACK HIGHLIGHTS (only for Pawn)
                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-                    if(obj.name === 'Pawn') {
+                    if (obj.name === 'Pawn') {
 
                         obj.calculateAttackMoves();
 
-                        for(let asq of obj.attackSquares) {
+                        for (let asq of obj.attackSquares) {
 
                             this.changeSquareAttr(asq.x, asq.y, 'droppable', true);
                             this.changeSquareAttr(asq.x, asq.y, 'enemyPiece', true);
@@ -136,20 +161,18 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
                     }
 
 
+                    /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+                     MOVEMENT HIGHLIGHTS
+                     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-                          /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-                           MOVEMENT HIGHLIGHTS
-                           <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-
-                          if(typeof squares === 'undefined') {
-                              return false;
-                          }
+                    if (typeof squares === 'undefined') {
+                        return false;
+                    }
 
 
                     for (let square of squares) {
                         // console.log(square);
                         if (square.x >= 0 && square.y >= 0) {
-
 
 
                             this.changeSquareAttr(square.x, square.y, 'droppable', true);
@@ -170,7 +193,6 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
                                             this.changeSquareAttr(square.x, square.y, 'enemyPiece', true); //test
 
 
-
                                         } else {
                                             this.changeSquareAttr(square.x, square.y, 'droppable', false);
                                         }
@@ -189,12 +211,11 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
                     }
 
 
-
                     break;
 
 
                 case false: // turn off highlight
-                    if(typeof squares !== 'undefined') {
+                    if (typeof squares !== 'undefined') {
                         for (let square of squares) {
                             // console.log(square);
                             if (square.x >= 0 && square.y >= 0) {
@@ -220,7 +241,7 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
         checkObjTurn(obj) {
 
 
-            switch($rootScope.turn) {
+            switch ($rootScope.turn) {
 
                 case 'Player White':
                     return obj.team === 'white';
@@ -233,7 +254,24 @@ app.controller('boardCtrl', ($scope, $rootScope,bkgMusicService) => {
             }
 
 
+        }
 
+
+    }
+
+
+    $scope.checkBlood = function(square) {
+
+        let css = {
+            "background-image": "url('../gfx/blood/"+square.blood+".png') ",
+        "background-repeat": "no-repeat",
+        "background-position": "1rem 1.3rem"
+        };
+
+        if(square.blood) {
+            return css;
+        } else {
+            return false;
         }
 
 

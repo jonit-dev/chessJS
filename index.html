@@ -23,7 +23,13 @@
     <link rel="stylesheet" href="css/turn.css">
     <link rel="stylesheet" href="css/board.css">
     <link rel="stylesheet" href="css/pieces.css">
+    <link rel="stylesheet" href="css/dialog.css">
 
+
+    <!--NG-DIALOG-->
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.css">
+    <script src="node_modules/ng-dialog/js/ngDialog.min.js"></script>
 
 </head>
 <body ng-cloak="" ng-controller="dragDropCtrl">
@@ -36,6 +42,29 @@
 
     </div>
 
+    <!--DIALOG TEMPLATE-->
+
+    <script type="text/ng-template" id="firstDialogId">
+       <div class="zindex">
+           <div class="ngdialog-message">
+               <h3>ngDialog template</h3>
+               <p ng-show="theme">Test content for <code>{{theme}}</code></p>
+               <p ng-show="ngDialogId">Dialog Id: <code>{{ngDialogId}}</code></p>
+               <p class="data-passed-through" ng-show="ngDialogData.foo">Data passed through: <code>{{ngDialogData.foo}}</code></p>
+               <p ng-show="dialogModel.message">Scope passed through: <code>{{dialogModel.message}}</code></p>
+               <p>Close this dialog: <button class="inline close-this-dialog" ng-click="closeThisDialog()">Close</button></p>
+
+           </div>
+           <div class="ngdialog-buttons">
+               <button type="button" class="ngdialog-button ngdialog-button-secondary"
+                       ng-dialog="secondDialogId"
+                       ng-dialog-class="ngdialog-theme-default"
+                       ng-dialog-controller="SecondModalCtrl"
+                       ng-dialog-close-previous>Close and open</button>
+               <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openSecond()">Open next</button>
+           </div>
+       </div>
+    </script>
 
     <div ng-controller="pieceCtrl">
 
@@ -43,8 +72,11 @@
 
         <div class="board-row cf" ng-repeat="rows in board.rows">
         <div class="board-row-square"
-             ng-class="{'dark-square' : square.className === 'dark-square', 'white-square':square.className === 'white-square', 'square-highlight': square.droppable, 'square-highlight-enemy' : square.enemyPiece}"
-
+             ng-class="{'dark-square' : square.className === 'dark-square',
+              'white-square':square.className === 'white-square',
+               'square-highlight': square.droppable,
+               'square-highlight-enemy' : square.enemyPiece}"
+             ng-style="checkBlood(square)"
              ng-repeat="square in rows.squares"   data-drop="square.droppable"
              data-jqyoui-options="{zIndex:-99999999999}"
              jqyoui-droppable="{onDrop: 'onDrop(square)'}"
@@ -53,7 +85,7 @@
 
             <!--Show a piece, if theres any in that place-->
 
-            <div ng-if="square.piece" class="piece-container"  data-drag="true" data-jqyoui-options="{revert: 'invalid',zIndex:10000000, revertDuration:100}"
+            <div ng-if="square.piece" class="piece-container"  data-drag="true" data-jqyoui-options="{revert: 'invalid', revertDuration:100}"
                  jqyoui-draggable="{animate:true, onDrag: 'onDrag(square.piece)', onStart: 'onDragStart(square.piece)', onStop: 'onDragStop(square.piece)'}"
                  ng-model="square.piece">
                 <img  ng-src="{{square.piece.imgUrl}}{{square.piece.team}}.png" alt="{{square.piece.name}}" class="piece "
@@ -64,8 +96,8 @@
 
 
             <!--Debug info-->
-                <span class="debug-info">
-                   pieceId: {{square.piece.id}}/x:{{square.x}}/y:{{square.y}}/Drop:  {{square.droppable}}</span>
+                <!--<span class="debug-info">-->
+                   <!--pieceId: {{square.piece.id}}/x:{{square.x}}/y:{{square.y}}/Drop:  {{square.droppable}}</span>-->
 
         </div>
     </div>

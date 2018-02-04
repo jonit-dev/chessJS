@@ -7,3 +7,6 @@ https://joszs.itch.io/chess-pack
 
 * Chenx midi player js class
 
+
+*ngDialog
+

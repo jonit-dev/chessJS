@@ -43,7 +43,7 @@ app.controller('dragDropCtrl', ($scope, $rootScope) => {
 
          $rootScope.board.highlight(obj, true);
      } else {
-         alert("Its not your turn!")
+        $rootScope.board.showMessage('Its not your turn!');
          let audio = new Audio('sfx/cancel.wav');
          audio.play();
      }

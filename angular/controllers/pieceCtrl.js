@@ -86,8 +86,14 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
             console.log($scope.activePieces);
 
             //remove highlights
+            console.log('blood image');
+            let n = Math.ceil(Math.random() * 3);
+            console.log(n);
             $rootScope.board.changeSquareAttr(target.x, target.y, 'piece', null);
+            $rootScope.board.changeSquareAttr(target.x, target.y, 'blood', n);
             $rootScope.board.changeSquareAttr(target.x, target.y, 'droppable', false);
+
+            console.log($rootScope.board.returnSquare(target.x,target.y));
 
             if (this.name === 'Pawn') {
                 this.turnOffAttackHighlights();
@@ -547,7 +553,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             // console.log(moves);
 
-           return this.allowedSquares = moves;
+            return this.allowedSquares = moves;
         }
 
 
@@ -669,7 +675,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
 
             // console.log(moves);
 
-           return this.allowedSquares = moves;
+            return this.allowedSquares = moves;
         }
 
         calculateCheckMate() {
@@ -703,7 +709,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
                         //force a movement calculation
                         let sqs = piece.calculateMoves(piece.x, piece.y);
                         for (let sq of sqs) {
-                            if(typeof sq !== 'undefined') {
+                            if (typeof sq !== 'undefined') {
                                 avoidSquares.push(sq);
                             }
                         }
@@ -717,7 +723,7 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
         checkPositionCheckMate(x, y) {
             let checkMateMovements = this.avoidSqs;
 
-            if(checkMateMovements !== 'undefined') {
+            if (checkMateMovements !== 'undefined') {
                 let output = checkMateMovements.find((forbiddenSq) => {
                     if (forbiddenSq.x === x && forbiddenSq.y === y) {
                         return forbiddenSq;
@@ -728,8 +734,6 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
             }
 
 
-
-
         }
     }
 
@@ -737,46 +741,46 @@ app.controller('pieceCtrl', ($scope, $rootScope, pieceMovementService) => {
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     TEAM POSITIONING
     <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
-  
-/* WHITE TEAM =========================================== */
+
+    /* WHITE TEAM =========================================== */
 
     new Rook(0, 7, 'white');
     new Rook(7, 7, 'white');
 
-    for(let i = 0; i <= 7; i++) {
+    for (let i = 0; i <= 7; i++) {
         new Pawn(i, 6, 'white');
     }
 
-    new Knight(6,7,'white');
-    new Knight(1,7,'white');
+    new Knight(6, 7, 'white');
+    new Knight(1, 7, 'white');
 
 
-    new Bishop(2,7,'white');
-    new Bishop(5,7,'white');
+    new Bishop(2, 7, 'white');
+    new Bishop(5, 7, 'white');
 
-    new Queen(3,7,'white');
+    new Queen(3, 7, 'white');
 
-    new King(4,7,'white');
+    new King(4, 7, 'white');
 
-/* BLACK TEAM =========================================== */
+    /* BLACK TEAM =========================================== */
 
     new Rook(0, 0, 'black');
     new Rook(7, 0, 'black');
 
 
-    for(let i = 0; i <= 7; i++) {
+    for (let i = 0; i <= 7; i++) {
         new Pawn(i, 1, 'black');
     }
 
-    new Knight(1,0,'black');
-    new Knight(6,0,'black');
+    new Knight(1, 0, 'black');
+    new Knight(6, 0, 'black');
 
 
-    new Bishop(2,0,'black');
-    new Bishop(5,0,'black');
+    new Bishop(2, 0, 'black');
+    new Bishop(5, 0, 'black');
 
-    new Queen(3,0,'black');
-    new King(4,0,'black');
+    new Queen(3, 0, 'black');
+    new King(4, 0, 'black');
 
 
 });

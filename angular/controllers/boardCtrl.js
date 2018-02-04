@@ -8,8 +8,8 @@ app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
     /* ------------------------------------------------------------|
     | BACKGROUND MUSIC
     *-------------------------------------------------------------*/
-    // bkgMusicService.init();
-    // bkgMusicService.playSound();
+    bkgMusicService.init();
+    bkgMusicService.playSound();
 
     /*>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     BOARD STRUCTURE

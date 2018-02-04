@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0ea8a61a-7c1f-41a7-a85f-70d1933e036c" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/manifest.json" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/favicon.ico" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/angular/controllers/boardCtrl.js" afterPath="$PROJECT_DIR$/angular/controllers/boardCtrl.js" />
+      <change beforePath="$PROJECT_DIR$/css/dialog.css" afterPath="$PROJECT_DIR$/css/dialog.css" />
       <change beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -29,11 +30,21 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="34" column="41" lean-forward="false" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+            <state relative-caret-position="211">
+              <caret line="59" column="126" lean-forward="false" selection-start-line="59" selection-start-column="126" selection-end-line="59" selection-end-column="126" />
               <folding>
-                <marker date="1517721545831" expanded="true" signature="3055:3287" ph="{&quot;square-highlight&quot;: square.droppable...}" />
+                <marker date="1517722535707" expanded="true" signature="2339:2571" ph="{&quot;square-highlight&quot;: square.droppable...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/ng-dialog/example/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2832">
+              <caret line="106" column="12" lean-forward="false" selection-start-line="105" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -41,14 +52,24 @@
       <file leaf-file-name="boardCtrl.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/angular/controllers/boardCtrl.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+            <state relative-caret-position="312">
+              <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
               <folding>
-                <element signature="e#2003#2430#0" expanded="false" />
-                <element signature="e#3069#3416#0" expanded="false" />
-                <element signature="e#3453#6814#0" expanded="false" />
-                <marker date="1517721666427" expanded="true" signature="2774:2792" ph="..." />
+                <element signature="e#2484#2911#0" expanded="false" />
+                <element signature="e#4002#4349#0" expanded="false" />
+                <element signature="e#4386#7747#0" expanded="false" />
+                <marker date="1517722777033" expanded="true" signature="3308:3326" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="dialog.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/css/dialog.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -75,8 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>$scope.board</find>
-      <find>zIndex</find>
       <find>$fromEl.css({'position': 'absolute', 'z-index': 9999})</find>
       <find>$(jqyouiOptions.helper ? ui.helper : this).css('z-index', 9999);</find>
       <find>z-index</find>
@@ -105,6 +124,8 @@
       <find>.ngdialog.ngdialog-theme-default</find>
       <find>padding-top</find>
       <find>node</find>
+      <find>Custom</find>
+      <find>close</find>
     </findStrings>
     <replaceStrings>
       <replace>$scope.board</replace>
@@ -139,7 +160,6 @@
         <option value="$PROJECT_DIR$/angular/services/bkgMusicService.js" />
         <option value="$PROJECT_DIR$/credits.txt" />
         <option value="$PROJECT_DIR$/angular/modules/app.js" />
-        <option value="$PROJECT_DIR$/css/dialog.css" />
         <option value="$PROJECT_DIR$/css/pieces.css" />
         <option value="$PROJECT_DIR$/angular/controllers/ddCtrl.js" />
         <option value="$PROJECT_DIR$/angular/controllers/pieceCtrl.js" />
@@ -147,6 +167,8 @@
         <option value="$PROJECT_DIR$/node_modules/ng-dialog/css/ngDialog-theme-default.css" />
         <option value="$PROJECT_DIR$/css/turn.css" />
         <option value="$PROJECT_DIR$/manifest.json" />
+        <option value="$PROJECT_DIR$/node_modules/ng-dialog/example/index.html" />
+        <option value="$PROJECT_DIR$/css/dialog.css" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/angular/controllers/boardCtrl.js" />
       </list>
@@ -214,6 +236,36 @@
               <item name="angular" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ng-dialog" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ng-dialog" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="chess" type="b2602c69:ProjectViewProjectNode" />
+              <item name="chess" type="462c0819:PsiDirectoryNode" />
+              <item name="node_modules" type="462c0819:PsiDirectoryNode" />
+              <item name="ng-dialog" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -238,11 +290,11 @@
       <recent name="C:\Users\joaop\Desktop\chess-game\gfx" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\chess" />
       <recent name="C:\xampp\htdocs\chess\build" />
       <recent name="C:\xampp\htdocs\chess\gfx\blood" />
       <recent name="C:\Users\joaop\Desktop\chess-game\sfx\music" />
       <recent name="C:\Users\joaop\Desktop\chess-game\sfx" />
-      <recent name="C:\Users\joaop\Desktop\chess-game\fonts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -282,18 +334,17 @@
       <workItem from="1517702574033" duration="213000" />
       <workItem from="1517702957376" duration="8165000" />
       <workItem from="1517711518404" duration="5332000" />
-      <workItem from="1517717203863" duration="4447000" />
+      <workItem from="1517717203863" duration="5689000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99651000" />
+    <option name="totallyTimeSpent" value="100893000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -640,14 +691,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ng-dialog/example/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="389" column="14" lean-forward="false" selection-start-line="382" selection-start-column="12" selection-end-line="389" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/pieces.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -782,22 +825,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/dialog.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/ng-dialog/css/ngDialog-theme-default.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/turn.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="682">
@@ -838,25 +865,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ng-dialog/css/ngDialog-theme-default.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1408">
+          <caret line="64" column="16" lean-forward="false" selection-start-line="64" selection-start-column="16" selection-end-line="64" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/dialog.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="13" lean-forward="false" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="34" column="41" lean-forward="false" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+        <state relative-caret-position="211">
+          <caret line="59" column="126" lean-forward="false" selection-start-line="59" selection-start-column="126" selection-end-line="59" selection-end-column="126" />
           <folding>
-            <marker date="1517721545831" expanded="true" signature="3055:3287" ph="{&quot;square-highlight&quot;: square.droppable...}" />
+            <marker date="1517722535707" expanded="true" signature="2339:2571" ph="{&quot;square-highlight&quot;: square.droppable...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/ng-dialog/example/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2832">
+          <caret line="106" column="12" lean-forward="false" selection-start-line="105" selection-start-column="12" selection-end-line="106" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/angular/controllers/boardCtrl.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="44">
-          <caret line="2" column="1" lean-forward="false" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+        <state relative-caret-position="312">
+          <caret line="37" column="56" lean-forward="false" selection-start-line="37" selection-start-column="56" selection-end-line="37" selection-end-column="56" />
           <folding>
-            <element signature="e#2003#2430#0" expanded="false" />
-            <element signature="e#3069#3416#0" expanded="false" />
-            <element signature="e#3453#6814#0" expanded="false" />
-            <marker date="1517721666427" expanded="true" signature="2774:2792" ph="..." />
+            <element signature="e#2484#2911#0" expanded="false" />
+            <element signature="e#4002#4349#0" expanded="false" />
+            <element signature="e#4386#7747#0" expanded="false" />
+            <marker date="1517722777033" expanded="true" signature="3308:3326" ph="..." />
           </folding>
         </state>
       </provider>

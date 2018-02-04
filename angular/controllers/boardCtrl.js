@@ -1,7 +1,11 @@
 app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
 
+    console.log("Orientation type is " + screen.orientation.type);
+    console.log("Orientation angle is " + screen.orientation.angle);
 
-    screen.orientation.lock('landscape');
+
+
+
 
 
 
@@ -23,6 +27,19 @@ app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
             this.max_columns = max_columns;
             this.max_rows = max_rows;
             this.rows = [];
+
+
+            /* ------------------------------------------------------------|
+            | LANDSCAPE
+            *-------------------------------------------------------------*/
+
+            if(screen.orientation.type.indexOf('portrait') > -1) {
+
+                this.showMessage('show landscape message',false);
+
+                screen.orientation.lock('landscape');
+
+            }
 
 
             $rootScope.turn = 0; //white turn
@@ -95,12 +112,13 @@ app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
         }
 
 
-        showMessage(msg) {
+        showMessage(msg, simple = true) {
             /* ------------------------------------------------------------|
             | DIALOG SETUP
             *-------------------------------------------------------------*/
 
-            $rootScope.theme = 'ngdialog-theme-default';
+            if(simple === true) {
+                $rootScope.theme = 'ngdialog-theme-default';
 
                 ngDialog.open({
                     template: '<h2 style="text-align:center;" class="zindex">'+msg+'</h2>',
@@ -109,6 +127,22 @@ app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
                     overlay: false,
                     windowClass: 'zindex'
                 });
+            } else {
+
+                    $rootScope.theme = 'ngdialog-theme-plain custom-width';
+
+                    ngDialog.open({
+                        template: 'firstDialogId',
+
+                        className: 'ngdialog-theme-default custom-width',
+
+                        closeByDocument: true,
+                        closeByEscape: true
+                    });
+                };
+
+
+
 
         }
 
@@ -258,6 +292,8 @@ app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
 
 
     }
+
+
 
 
     $scope.checkBlood = function(square) {

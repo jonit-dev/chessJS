@@ -47,26 +47,18 @@
 
     </div>
 
-    <!--DIALOG TEMPLATE-->
+    <!--WRONG ORIENTATION MESSAGE-->
 
     <script type="text/ng-template" id="firstDialogId">
        <div class="zindex">
            <div class="ngdialog-message">
-               <h3>ngDialog template</h3>
-               <p ng-show="theme">Test content for <code>{{theme}}</code></p>
-               <p ng-show="ngDialogId">Dialog Id: <code>{{ngDialogId}}</code></p>
-               <p class="data-passed-through" ng-show="ngDialogData.foo">Data passed through: <code>{{ngDialogData.foo}}</code></p>
-               <p ng-show="dialogModel.message">Scope passed through: <code>{{dialogModel.message}}</code></p>
-               <p>Close this dialog: <button class="inline close-this-dialog" ng-click="closeThisDialog()">Close</button></p>
+               <h3>Turn your Phone to <b>Landscape</b></h3>
+               <p ng-show="theme">Please, to ajust correctly the chess field, turn your phone to landscape</p>
 
            </div>
            <div class="ngdialog-buttons">
-               <button type="button" class="ngdialog-button ngdialog-button-secondary"
-                       ng-dialog="secondDialogId"
-                       ng-dialog-class="ngdialog-theme-default"
-                       ng-dialog-controller="SecondModalCtrl"
-                       ng-dialog-close-previous>Close and open</button>
-               <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="openSecond()">Open next</button>
+               <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Ok</button>
+
            </div>
        </div>
     </script>

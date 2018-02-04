@@ -1,7 +1,7 @@
 app.controller('boardCtrl', ($scope, $rootScope, bkgMusicService, ngDialog) => {
 
 
-
+    screen.orientation.lock('landscape');
 
 
 
